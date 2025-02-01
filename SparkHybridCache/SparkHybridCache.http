@@ -1,0 +1,2 @@
+// GetPokemon request
+GET https://localhost:7010/pokemon/{{name}}

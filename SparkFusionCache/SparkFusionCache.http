@@ -1,0 +1,12 @@
+// GetPokemon request
+GET https://localhost:7109/pokemon/{{name}}
+
+###
+
+// GetPokemon with Tag request
+GET https://localhost:7109/pokemon/{{name}}?tags={{types}}
+
+###
+
+// RemoveByTag request
+GET https://localhost:7109/clear/{{tag}}
