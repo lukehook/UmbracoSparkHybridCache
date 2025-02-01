@@ -27,6 +27,12 @@ builder.Services.AddSingleton<PokemonService>();
 
 var app = builder.Build();
 
+app.MapGet("/", async context =>
+{
+    context.Response.ContentType = "text/html";
+    await context.Response.SendFileAsync("index.html");
+});
+
 app.MapGet("/pokemon/{name}", async (string name, PokemonService service, HttpRequest request) =>
 {
     string types = request.Query["types"];

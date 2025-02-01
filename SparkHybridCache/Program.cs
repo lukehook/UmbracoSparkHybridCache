@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Caching.Hybrid;
 using PokeApiNet;
 
@@ -27,6 +28,12 @@ builder.Services.AddSingleton<PokemonService>();
 builder.Services.AddSingleton<PokeApiClient>();
 
 var app = builder.Build();
+
+app.MapGet("/", async context =>
+{
+    context.Response.ContentType = "text/html";
+    await context.Response.SendFileAsync("index.html");
+});
 
 app.MapGet("/pokemon/{name}", async (string name, PokemonService service) =>
     {
