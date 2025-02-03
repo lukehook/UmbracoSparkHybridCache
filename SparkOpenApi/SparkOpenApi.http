@@ -1,0 +1,6 @@
+@SparkOpenApi_HostAddress = http://localhost:5105
+
+GET {{SparkOpenApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkHybridCache", "SparkHy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkFusionCache", "SparkFusionCache\SparkFusionCache.csproj", "{F46520C2-F233-12BC-AECD-3456F8108048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkOpenApi", "SparkOpenApi\SparkOpenApi.csproj", "{77A06312-3A60-436F-8FE9-4F3902785E67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F46520C2-F233-12BC-AECD-3456F8108048}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F46520C2-F233-12BC-AECD-3456F8108048}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F46520C2-F233-12BC-AECD-3456F8108048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A06312-3A60-436F-8FE9-4F3902785E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A06312-3A60-436F-8FE9-4F3902785E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A06312-3A60-436F-8FE9-4F3902785E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A06312-3A60-436F-8FE9-4F3902785E67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
