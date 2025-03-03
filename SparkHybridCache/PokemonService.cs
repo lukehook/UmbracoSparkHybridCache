@@ -1,12 +1,18 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using PokeApiNet;
+using SparkShared;
+
+
 
 public class PokemonService(HybridCache cache, PokeApiClient pokeApiClient)
 {
     private HybridCache _cache = cache;
     private PokeApiClient _pokeApiClient = pokeApiClient;
 
-    public async Task<Pokemon> GetPokemonAsync(string name, CancellationToken token = default)
+
+
+
+    public async Task<PokemonResponse> GetPokemonAsync(string name, CancellationToken token = default)
     {
         //var entryOptions = new HybridCacheEntryOptions
         //{
@@ -20,9 +26,25 @@ public class PokemonService(HybridCache cache, PokeApiClient pokeApiClient)
             );
     }
 
-    private async Task<Pokemon> GetPokemonFromApiAsync(string name, CancellationToken token)
+
+
+
+    private async Task<PokemonResponse> GetPokemonFromApiAsync(string name, CancellationToken token)
     {
-        Pokemon pokemon = await _pokeApiClient.GetResourceAsync<Pokemon>(name);
-        return pokemon;
+        Pokemon pokemon = await _pokeApiClient.GetResourceAsync<Pokemon>(name, token);
+
+        var response = new PokemonResponse
+        {
+            Name = pokemon.Name,
+            Types = pokemon.Types.Select(t => t.Type.Name).ToArray(),
+            Image = pokemon.Sprites.FrontDefault
+        };
+
+        return response;
     }
+
+
+
+
+
 }

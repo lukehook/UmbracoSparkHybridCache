@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gotta Cache 'em All</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Gotta Cache 'em All</h1>
+    <input type="text" id="pokemonName" placeholder="Enter Pokémon name" onkeypress="if(event.key === 'Enter') fetchPokemon()">
+    <button type="button" onclick="fetchPokemon()">Submit</button>
+    <button type="button" onclick="toggleTypes()">Types</button>
+    <div id="typesContainer" style="display: none;">
+        <label class="normal"><input type="checkbox" name="type" value="normal"> Normal</label>
+        <label class="fire"><input type="checkbox" name="type" value="fire"> Fire</label>
+        <label class="water"><input type="checkbox" name="type" value="water"> Water</label>
+        <label class="electric"><input type="checkbox" name="type" value="electric"> Electric</label>
+        <label class="grass"><input type="checkbox" name="type" value="grass"> Grass</label>
+        <label class="ice"><input type="checkbox" name="type" value="ice"> Ice</label>
+        <label class="fighting"><input type="checkbox" name="type" value="fighting"> Fighting</label>
+        <label class="poison"><input type="checkbox" name="type" value="poison"> Poison</label>
+        <label class="ground"><input type="checkbox" name="type" value="ground"> Ground</label>
+        <label class="flying"><input type="checkbox" name="type" value="flying"> Flying</label>
+        <label class="psychic"><input type="checkbox" name="type" value="psychic"> Psychic</label>
+        <label class="bug"><input type="checkbox" name="type" value="bug"> Bug</label>
+        <label class="rock"><input type="checkbox" name="type" value="rock"> Rock</label>
+        <label class="ghost"><input type="checkbox" name="type" value="ghost"> Ghost</label>
+        <label class="dragon"><input type="checkbox" name="type" value="dragon"> Dragon</label>
+        <label class="dark"><input type="checkbox" name="type" value="dark"> Dark</label>
+        <label class="steel"><input type="checkbox" name="type" value="steel"> Steel</label>
+        <label class="fairy"><input type="checkbox" name="type" value="fairy"> Fairy</label>
+    </div>
+    <div id="responseInfo" style="display: none;">
+        <p>Status Code: <span id="statusCode"></span></p>
+        <p>Response Time: <span id="responseTime"></span> ms</p>
+        <img id="pokemonImage" src="" alt="Pokémon Image" style="display: none;">
+        <div id="pokemonDetails"></div>
+    </div>
+    <script src="/js/script.js" defer></script>
+</body>
+</html>

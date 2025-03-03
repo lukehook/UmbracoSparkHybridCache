@@ -10,9 +10,8 @@ builder.Services.AddMemoryCache();
 builder.Services.AddFusionCache()
     .WithDefaultEntryOptions(new FusionCacheEntryOptions
     {
-        Duration = TimeSpan.FromSeconds(5),
+        Duration = TimeSpan.FromSeconds(10),
         DistributedCacheDuration = TimeSpan.FromMinutes(10)
-
     })
     .WithSerializer(
         new FusionCacheSystemTextJsonSerializer()
@@ -25,12 +24,28 @@ builder.Services.AddFusionCache()
 builder.Services.AddSingleton<PokeApiClient>();
 builder.Services.AddSingleton<PokemonService>();
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("OpenCorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
+
+// Use CORS policy
+app.UseCors("OpenCorsPolicy");
+
+app.UseStaticFiles();
 
 app.MapGet("/", async context =>
 {
     context.Response.ContentType = "text/html";
-    await context.Response.SendFileAsync("index.html");
+    await context.Response.SendFileAsync("wwwroot/index.html");
 });
 
 app.MapGet("/pokemon/{name}", async (string name, PokemonService service, HttpRequest request) =>

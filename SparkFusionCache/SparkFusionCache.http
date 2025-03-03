@@ -4,7 +4,7 @@ GET https://localhost:7109/pokemon/{{name}}
 ###
 
 // GetPokemon with Tag request
-GET https://localhost:7109/pokemon/{{name}}?tags={{types}}
+GET https://localhost:7109/pokemon/{{name}}?types={{types}}
 
 ###
 

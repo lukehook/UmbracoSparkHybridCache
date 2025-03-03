@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Caching.Hybrid;
 using PokeApiNet;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,12 +27,28 @@ builder.Services.AddHybridCache(options =>
 builder.Services.AddSingleton<PokemonService>();
 builder.Services.AddSingleton<PokeApiClient>();
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("OpenCorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
+
+// Use CORS policy
+app.UseCors("OpenCorsPolicy");
+
+app.UseStaticFiles();
 
 app.MapGet("/", async context =>
 {
     context.Response.ContentType = "text/html";
-    await context.Response.SendFileAsync("index.html");
+    await context.Response.SendFileAsync("wwwroot/index.html");
 });
 
 app.MapGet("/pokemon/{name}", async (string name, PokemonService service) =>

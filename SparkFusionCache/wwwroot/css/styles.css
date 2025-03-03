@@ -1,0 +1,143 @@
+@font-face {
+    font-family: 'PokemonFont-Hollow';
+    src: url('/fonts/Pokemon\ Hollow.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'PokemonFont-Solid';
+    src: url('/fonts/Pokemon\ Solid.ttf') format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+}
+
+h1 {
+    font-family: 'PokemonFont-Solid', sans-serif;
+    font-size: 5em;
+    color: #efcf00;
+    -webkit-text-stroke: 4px #4f5db8;
+    text-shadow: -10px 10px #2b2364;
+    letter-spacing: 8px;
+    margin: 0;
+}
+
+input, button {
+    padding: 10px;
+    font-size: 1.5em;
+    border: 5px solid #4f5db8;
+    border-radius: 5px;
+}
+
+input {
+    color: #4f5db8;
+}
+
+button {
+    color: #efcf00;
+    background-color: #4f5db8;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2b2364;
+    border: 5px solid #2b2364;
+}
+
+button:active {
+    box-shadow: 0 2px #1a1733;
+    transform: translateY(2px);
+}
+
+#responseInfo {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#pokemonImage {
+    margin-top: 20px;
+    width: 200px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pokemonDetails {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#pokemonDetails p {
+    margin: 5px 0;
+}
+
+.type {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: white;
+    margin-right: 5px;
+}
+
+.type.normal { background-color: #A8A77A; }
+.type.fire { background-color: #EE8130; }
+.type.water { background-color: #6390F0; }
+.type.electric { background-color: #F7D02C; }
+.type.grass { background-color: #7AC74C; }
+.type.ice { background-color: #96D9D6; }
+.type.fighting { background-color: #C22E28; }
+.type.poison { background-color: #A33EA1; }
+.type.ground { background-color: #E2BF65; }
+.type.flying { background-color: #A98FF3; }
+.type.psychic { background-color: #F95587; }
+.type.bug { background-color: #A6B91A; }
+.type.rock { background-color: #B6A136; }
+.type.ghost { background-color: #735797; }
+.type.dragon { background-color: #6F35FC; }
+.type.dark { background-color: #705746; }
+.type.steel { background-color: #B7B7CE; }
+.type.fairy { background-color: #D685AD; }
+
+#typesContainer {
+    transition: all 0.5sease;
+    margin: 20px auto 0;
+    width: 80%;
+}
+
+#typesContainer label {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: white;
+}
+
+#typesContainer label.normal { background-color: #A8A77A; }
+#typesContainer label.fire { background-color: #EE8130; }
+#typesContainer label.water { background-color: #6390F0; }
+#typesContainer label.electric { background-color: #F7D02C; }
+#typesContainer label.grass { background-color: #7AC74C; }
+#typesContainer label.ice { background-color: #96D9D6; }
+#typesContainer label.fighting { background-color: #C22E28; }
+#typesContainer label.poison { background-color: #A33EA1; }
+#typesContainer label.ground { background-color: #E2BF65; }
+#typesContainer label.flying { background-color: #A98FF3; }
+#typesContainer label.psychic { background-color: #F95587; }
+#typesContainer label.bug { background-color: #A6B91A; }
+#typesContainer label.rock { background-color: #B6A136; }
+#typesContainer label.ghost { background-color: #735797; }
+#typesContainer label.dragon { background-color: #6F35FC; }
+#typesContainer label.dark { background-color: #705746; }
+#typesContainer label.steel { background-color: #B7B7CE; }
+#typesContainer label.fairy { background-color: #D685AD; }
+
+/* Add styles for smaller checkboxes */
+#typesContainer input[type="checkbox"] {
+    transform: scale(0.8);
+    margin-right: 5px;
+}
