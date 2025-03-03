@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using PokeApiNet;
-
+using SparkShared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,16 +18,15 @@ builder.Services.AddHybridCache(options =>
         options.MaximumKeyLength = 1024;
         options.DefaultEntryOptions = new HybridCacheEntryOptions
         {
-            Expiration = TimeSpan.FromMinutes(10),
+            Expiration = TimeSpan.FromSeconds(15),
             LocalCacheExpiration = TimeSpan.FromSeconds(5)
         };
     });
 #pragma warning restore EXTEXP0018 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-builder.Services.AddSingleton<PokemonService>();
 builder.Services.AddSingleton<PokeApiClient>();
+builder.Services.AddSingleton<PokemonService>();
 
-// Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("OpenCorsPolicy", builder =>
@@ -39,11 +38,10 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
-// Use CORS policy
 app.UseCors("OpenCorsPolicy");
-
 app.UseStaticFiles();
+
+
 
 app.MapGet("/", async context =>
 {

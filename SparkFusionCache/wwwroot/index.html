@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <div id="timer" style="display: none; text-align: center; font-size: 2em;">0s</div>
     <h1>Gotta Cache 'em All</h1>
+    <label>
+        <input type="checkbox" id="breakCheckbox"> break
+    </label>
     <input type="text" id="pokemonName" placeholder="Enter Pokémon name" onkeypress="if(event.key === 'Enter') fetchPokemon()">
     <button type="button" onclick="fetchPokemon()">Submit</button>
     <button type="button" onclick="toggleTypes()">Types</button>
+    <button type="button" id="clearButton" onclick="clearTypes()" disabled>Clear Tags</button>
     <div id="typesContainer" style="display: none;">
         <label class="normal"><input type="checkbox" name="type" value="normal"> Normal</label>
         <label class="fire"><input type="checkbox" name="type" value="fire"> Fire</label>

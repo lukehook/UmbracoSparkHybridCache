@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using PokeApiNet;
+using SparkShared;
 using ZiggyCreatures.Caching.Fusion;
 using ZiggyCreatures.Caching.Fusion.Serialization.SystemTextJson;
 
@@ -10,8 +11,19 @@ builder.Services.AddMemoryCache();
 builder.Services.AddFusionCache()
     .WithDefaultEntryOptions(new FusionCacheEntryOptions
     {
-        Duration = TimeSpan.FromSeconds(10),
-        DistributedCacheDuration = TimeSpan.FromMinutes(10)
+        Duration = TimeSpan.FromSeconds(20),
+        DistributedCacheDuration = TimeSpan.FromSeconds(20),
+
+        #region EagerRefresh
+        EagerRefreshThreshold = 0.5f,
+        #endregion
+
+        #region FailSafe
+        //IsFailSafeEnabled = true,
+        //FailSafeMaxDuration = TimeSpan.FromHours(1),
+        //FailSafeThrottleDuration = TimeSpan.FromSeconds(30)
+        #endregion
+
     })
     .WithSerializer(
         new FusionCacheSystemTextJsonSerializer()
@@ -51,12 +63,28 @@ app.MapGet("/", async context =>
 app.MapGet("/pokemon/{name}", async (string name, PokemonService service, HttpRequest request) =>
 {
     string types = request.Query["types"];
+    string fake = request.Query["fake"];
+
+    if (string.IsNullOrEmpty(fake) == false)
+    {
+        return await service.GetPokemonAsync(name, types, true);
+    }
+
     return await service.GetPokemonAsync(name, types);
 });
 
 app.MapGet("/clear/{tag}", async (string tag, HybridCache cache) =>
 {
-    await cache.RemoveByTagAsync(tag);
+    var tagArray = Array.Empty<string>();
+    if (string.IsNullOrEmpty(tag) == false)
+    {
+        tagArray = tag.Split('|');
+        foreach(var t in tagArray)
+        {
+            await cache.RemoveByTagAsync(t);
+        }
+    }
+
     return Results.Ok();
 });
 
