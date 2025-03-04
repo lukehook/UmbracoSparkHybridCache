@@ -80,7 +80,7 @@ function updateClearButtonState() {
     clearButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
 }
 
-async function clearSelectedTypes() {
+async function clearTypes() {
     const types = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value.toLowerCase()).join('|');
     if (types) {
         const url = `/clear/${types}`;

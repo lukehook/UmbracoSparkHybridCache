@@ -11,11 +11,11 @@ builder.Services.AddMemoryCache();
 builder.Services.AddFusionCache()
     .WithDefaultEntryOptions(new FusionCacheEntryOptions
     {
-        Duration = TimeSpan.FromSeconds(20),
-        DistributedCacheDuration = TimeSpan.FromSeconds(20),
+        Duration = TimeSpan.FromSeconds(15),
+        DistributedCacheDuration = TimeSpan.FromSeconds(30),
 
         #region EagerRefresh
-        EagerRefreshThreshold = 0.5f,
+        //EagerRefreshThreshold = 0.5f,
         #endregion
 
         #region FailSafe
