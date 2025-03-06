@@ -1,17 +1,16 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Hybrid;
-using Microsoft.Extensions.Caching.Memory;
 using PokeApiNet;
 
 namespace SparkShared
 {
     public class PokemonService
     {
-
         private HybridCache _cache;
         private PokeApiClient _pokeApiClient;
 
-        public PokemonService(HybridCache hybridCache, PokeApiClient pokeApiClient, IMemoryCache memoryCache)
+        public PokemonService(HybridCache hybridCache, PokeApiClient pokeApiClient)
         {
             _cache = hybridCache;
             _pokeApiClient = pokeApiClient;

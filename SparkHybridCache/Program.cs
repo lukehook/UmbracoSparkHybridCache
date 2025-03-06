@@ -11,6 +11,8 @@ builder.Services.AddStackExchangeRedisCache(options =>
         builder.Configuration.GetConnectionString("RedisConnectionString");
 });
 
+
+
 #pragma warning disable EXTEXP0018 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 builder.Services.AddHybridCache(options =>
     {
@@ -18,11 +20,13 @@ builder.Services.AddHybridCache(options =>
         options.MaximumKeyLength = 1024;
         options.DefaultEntryOptions = new HybridCacheEntryOptions
         {
-            Expiration = TimeSpan.FromSeconds(30),
-            LocalCacheExpiration = TimeSpan.FromSeconds(15)
+            Expiration = TimeSpan.FromSeconds(20),
+            LocalCacheExpiration = TimeSpan.FromSeconds(10)
         };
     });
 #pragma warning restore EXTEXP0018 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+
+
 
 builder.Services.AddSingleton<PokeApiClient>();
 builder.Services.AddSingleton<PokemonService>();
