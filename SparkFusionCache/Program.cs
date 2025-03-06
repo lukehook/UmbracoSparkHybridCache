@@ -29,7 +29,12 @@ builder.Services.AddFusionCache()
         new FusionCacheSystemTextJsonSerializer()
     )
     .WithDistributedCache(
-        new RedisCache(new RedisCacheOptions() { Configuration = builder.Configuration.GetConnectionString("RedisConnectionString") })
+        new RedisCache(
+            new RedisCacheOptions()
+            {
+                Configuration = builder.Configuration.GetConnectionString("RedisConnectionString")
+            }
+        )
     )
     .AsHybridCache();
 
@@ -81,7 +86,7 @@ app.MapGet("/clear/{tag}", async (string tag, HybridCache cache) =>
     if (string.IsNullOrEmpty(tag) == false)
     {
         tagArray = tag.Split('|');
-        foreach(var t in tagArray)
+        foreach (var t in tagArray)
         {
             await cache.RemoveByTagAsync(t);
         }
