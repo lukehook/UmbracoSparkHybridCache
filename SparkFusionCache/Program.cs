@@ -33,10 +33,13 @@ builder.Services.AddFusionCache()
     )
     .AsHybridCache();
 
+
+
 builder.Services.AddSingleton<PokeApiClient>();
 builder.Services.AddSingleton<PokemonService>();
 
-// Add CORS policy
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("OpenCorsPolicy", builder =>
@@ -48,11 +51,10 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
-// Use CORS policy
 app.UseCors("OpenCorsPolicy");
-
 app.UseStaticFiles();
+
+
 
 app.MapGet("/", async context =>
 {
