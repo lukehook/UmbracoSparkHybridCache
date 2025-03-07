@@ -32,6 +32,8 @@ builder.Services.AddFusionCache()
         new RedisCache(
             new RedisCacheOptions()
             {
+                // Replace this with your own Redis connection string in appsettings.json or you
+                // you can swap this out for a different IDistributedCache implementation such as SQL Server
                 Configuration = builder.Configuration.GetConnectionString("RedisConnectionString")
             }
         )

@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMemoryCache();
 builder.Services.AddStackExchangeRedisCache(options =>
 {
+    // Replace this with your own Redis connection string in appsettings.json or you
+    // you can swap this out for a different IDistributedCache implementation such as SQL Server
     options.Configuration =
         builder.Configuration.GetConnectionString("RedisConnectionString");
 });
