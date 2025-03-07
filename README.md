@@ -2,7 +2,7 @@
 
 ## Overview
 
-UmbracoSparkHybridCache is a project that demonstrates the use of hybrid caching with Redis and in-memory caching for a Pokémon API. The project consists of three main components:
+UmbracoSparkHybridCache is a project that demonstrates the use of hybrid caching with distributed and in-memory caching for a Pokémon API. The project consists of three main components:
 
 - **SparkFusionCache**: A web application that uses FusionCache for caching Pokémon data.
 - **SparkHybridCache**: A web application that uses HybridCache for caching Pokémon data.
