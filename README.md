@@ -9,7 +9,7 @@ UmbracoSparkHybridCache is a project that demonstrates the use of hybrid caching
 - **SparkShared**: A shared library containing common code used by both web applications.
 
 > [!NOTE]  
-> This demo utilises the free and open source [PokeAPI](https://pokeapi.co) - this is a RESTful service that responds with Pokemon data that is used for the purpose of demonstrating the HybridCache functionality
+> This demo utilises the free and open source [PokeAPI](https://pokeapi.co) - this is a RESTful service that responds with Pokemon data that is used for the purpose of demonstrating the HybridCache functionality. Please use this service responsibly.
 
 ## Project Structure
 
