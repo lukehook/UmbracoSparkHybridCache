@@ -8,6 +8,9 @@ UmbracoSparkHybridCache is a project that demonstrates the use of hybrid caching
 - **SparkHybridCache**: A web application that uses HybridCache for caching Pokémon data.
 - **SparkShared**: A shared library containing common code used by both web applications.
 
+> [!NOTE]  
+> This demo utilises the free and open source [PokeAPI](https://pokeapi.co) - this is a RESTful service that responds with Pokemon data that is used for the purpose of demonstrating the HybridCache functionality
+
 ## Project Structure
 
 ```
@@ -91,7 +94,14 @@ SparkShared/
 ### Prerequisites
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+
+> [!NOTE]  
+> The projects in this repo are using .NET 9 and will require the .NET 9 runtime to function. However HybridCache and FusionCache are compatible with verions of .NET as far back as .NET Framework 4.7.2
+
 - [Redis](https://redis.io/download)
+
+> [!NOTE]  
+> This example uses Redis as an IDistributedCache. You can provide your own connectionString to a Redis resource or swap out the IDistributedCache for a different implementation such as SQLServer
 
 ### Setup
 
@@ -124,6 +134,10 @@ SparkShared/
 
 3. Open your browser and navigate to `http://localhost:7109`.
 
+or
+
+4. Open the ```SparkFusionCache.http``` files and simulate the requests
+
 #### SparkHybridCache
 
 1. Navigate to the `SparkHybridCache` directory:
@@ -137,6 +151,10 @@ SparkShared/
     ```
 
 3. Open your browser and navigate to `http://localhost:7010`.
+
+or
+
+4. Open the ```SparkHybridCache.http``` files and simulate the requests
 
 ## Usage
 
