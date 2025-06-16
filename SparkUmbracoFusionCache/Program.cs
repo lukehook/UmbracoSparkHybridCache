@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
+using SparkUmbracoFusionCache;
 using ZiggyCreatures.Caching.Fusion;
-using ZiggyCreatures.Caching.Fusion.Serialization.NeueccMessagePack;
 using ZiggyCreatures.Caching.Fusion.Serialization.SystemTextJson;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -21,7 +21,7 @@ builder.Services.AddFusionCache()
         Size = 1024 * 1024 * 100,
     })
     .WithSerializer(
-        new FusionCacheNeueccMessagePackSerializer()
+        new FusionCacheSystemTextJsonSerializer()
     )
     .WithDistributedCache(
         new RedisCache(
