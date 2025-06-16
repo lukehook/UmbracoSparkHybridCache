@@ -15,7 +15,7 @@ builder.Services.AddFusionCache()
         DistributedCacheDuration = TimeSpan.FromSeconds(30),
 
         #region EagerRefresh
-        //EagerRefreshThreshold = 0.5f,
+        EagerRefreshThreshold = 0.5f,
         #endregion
 
         #region FailSafe
@@ -60,8 +60,6 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("OpenCorsPolicy");
 app.UseStaticFiles();
-
-
 
 app.MapGet("/", async context =>
 {

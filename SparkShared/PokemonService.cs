@@ -37,6 +37,7 @@ namespace SparkShared
                 $"pokemon-{name}",
                 async _ => await GetPokemonFromApiAsync(name, token, fake),
                 tags: tagArray,
+                //options: entryOptions,
                 cancellationToken: token
             );
         }
