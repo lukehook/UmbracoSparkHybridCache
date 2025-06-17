@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Hybrid;
+using Microsoft.Extensions.Caching.Memory;
 using PokeApiNet;
 
 namespace SparkShared
@@ -7,11 +8,13 @@ namespace SparkShared
     {
         private HybridCache _cache;
         private PokeApiClient _pokeApiClient;
+        private IMemoryCache _memoryCache;
 
-        public PokemonService(HybridCache hybridCache, PokeApiClient pokeApiClient)
+        public PokemonService(HybridCache hybridCache, PokeApiClient pokeApiClient, IMemoryCache memoryCache)
         {
             _cache = hybridCache;
             _pokeApiClient = pokeApiClient;
+            _memoryCache = memoryCache;
         }
 
         public async Task<PokemonResponse> GetPokemonAsync(string name, string tag = "", bool fake = false, CancellationToken token = default)

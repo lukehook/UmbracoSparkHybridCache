@@ -15,13 +15,13 @@ builder.Services.AddFusionCache()
         DistributedCacheDuration = TimeSpan.FromSeconds(30),
 
         #region EagerRefresh
-        EagerRefreshThreshold = 0.5f,
+        //EagerRefreshThreshold = 0.5f,
         #endregion
 
         #region FailSafe
         //IsFailSafeEnabled = true,
         //FailSafeMaxDuration = TimeSpan.FromHours(1),
-        //FailSafeThrottleDuration = TimeSpan.FromSeconds(30)
+        //FailSafeThrottleDuration = TimeSpan.FromSeconds(30),
         #endregion
 
     })

@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
-using SparkUmbracoFusionCache;
 using ZiggyCreatures.Caching.Fusion;
 using ZiggyCreatures.Caching.Fusion.Serialization.SystemTextJson;
 
@@ -18,7 +17,7 @@ builder.Services.RemoveAll(descriptor => descriptor.ServiceType == typeof(Hybrid
 builder.Services.AddFusionCache()
     .WithDefaultEntryOptions(new FusionCacheEntryOptions
     {
-        Size = 1024 * 1024 * 100,
+        Size = 1024 * 1024 * 100
     })
     .WithSerializer(
         new FusionCacheSystemTextJsonSerializer()
