@@ -11,31 +11,38 @@ namespace SparkShared
         private HybridCache _cache;
         private PokeApiClient _pokeApiClient;
 
+        private readonly IMemoryCache _memoryCache;
+        private readonly IDistributedCache _distributedCache;
+
         public PokemonService(HybridCache hybridCache, 
-            PokeApiClient pokeApiClient)
+            PokeApiClient pokeApiClient,
+            IMemoryCache memoryCache,
+            IDistributedCache distributedCache)
         {
             _cache = hybridCache;
             _pokeApiClient = pokeApiClient;
+            _memoryCache = memoryCache;
+            _distributedCache = distributedCache;
         }
 
         public async Task<PokemonResponse> GetPokemonAsync(string name, string tag = "", bool fake = false, CancellationToken token = default)
         {
 
             #region MemoryCache
-            //await _memoryCache.GetOrCreateAsync(
-            //    name, 
-            //    async _ => await GetPokemonFromApiAsync(name, token, fake));
+            await _memoryCache.GetOrCreateAsync(
+                name,
+                async _ => await GetPokemonFromApiAsync(name, token, fake));
             #endregion
 
             #region DistributedCache
-            //await _distributedCache.GetAsync(name, token).ContinueWith(async task =>
-            //{
-            //    if (task.Result == null)
-            //    {
-            //        var pokemon = await GetPokemonFromApiAsync(name, token, fake);
-            //        await _distributedCache.SetAsync(name, JsonSerializer.SerializeToUtf8Bytes(pokemon) , token);
-            //    }
-            //}, token);
+            await _distributedCache.GetAsync(name, token).ContinueWith(async task =>
+            {
+                if (task.Result == null)
+                {
+                    var pokemon = await GetPokemonFromApiAsync(name, token, fake);
+                    await _distributedCache.SetAsync(name, JsonSerializer.SerializeToUtf8Bytes(pokemon), token);
+                }
+            }, token);
             #endregion
 
             #region EntryOptions
