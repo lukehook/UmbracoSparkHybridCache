@@ -14,7 +14,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 
-
+#region HybridCache
 builder.Services.AddHybridCache(options =>
     {
         options.MaximumPayloadBytes = 1024 * 1024;
@@ -25,7 +25,7 @@ builder.Services.AddHybridCache(options =>
             LocalCacheExpiration = TimeSpan.FromSeconds(15)
         };
     });
-
+#endregion
 
 
 builder.Services.AddSingleton<PokeApiClient>();
