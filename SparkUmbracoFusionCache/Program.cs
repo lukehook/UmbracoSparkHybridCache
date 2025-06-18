@@ -14,25 +14,25 @@ builder.CreateUmbracoBuilder()
 // Remove all registrations of HybridCache from the service collection
 builder.Services.RemoveAll(descriptor => descriptor.ServiceType == typeof(HybridCache));
 
-builder.Services.AddFusionCache()
-    .WithDefaultEntryOptions(new FusionCacheEntryOptions
-    {
-        Size = 1024 * 1024 * 100
-    })
-    .WithSerializer(
-        new FusionCacheSystemTextJsonSerializer()
-    )
-    .WithDistributedCache(
-        new RedisCache(
-            new RedisCacheOptions()
-            {
-                // Replace this with your own Redis connection string in appsettings.json or you
-                // you can swap this out for a different IDistributedCache implementation such as SQL Server
-                Configuration = builder.Configuration.GetConnectionString("RedisConnectionString")
-            }
-        )
-    )
-    .AsHybridCache();
+//builder.Services.AddFusionCache()
+//    .WithDefaultEntryOptions(new FusionCacheEntryOptions
+//    {
+//        Size = 1024 * 1024 * 100
+//    })
+//    .WithSerializer(
+//        new FusionCacheSystemTextJsonSerializer()
+//    )
+//    .WithDistributedCache(
+//        new RedisCache(
+//            new RedisCacheOptions()
+//            {
+//                // Replace this with your own Redis connection string in appsettings.json or you
+//                // you can swap this out for a different IDistributedCache implementation such as SQL Server
+//                Configuration = builder.Configuration.GetConnectionString("RedisConnectionString")
+//            }
+//        )
+//    )
+//    .AsHybridCache();
 
 WebApplication app = builder.Build();
 
