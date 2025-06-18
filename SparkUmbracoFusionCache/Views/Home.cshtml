@@ -4,4 +4,23 @@
 	Layout = null;
 }
 
-<h1>@Model.Value("heading")</h1>
+<style>
+	span{
+		filter: blur(10px);
+		margin-left:10px;
+	}
+
+	h1{
+		font-family:Arial, Helvetica, sans-serif;
+		width: 100%;
+		text-align: center;
+		height:100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size:48px;
+	}
+
+</style>
+
+<h1>@Model.Value("heading") <span>@Model.Value("span")</span></h1>

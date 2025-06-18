@@ -19,9 +19,9 @@ builder.Services.AddFusionCache()
         #endregion
 
         #region FailSafe
-        //IsFailSafeEnabled = true,
-        //FailSafeMaxDuration = TimeSpan.FromHours(1),
-        //FailSafeThrottleDuration = TimeSpan.FromSeconds(30),
+        IsFailSafeEnabled = true,
+        FailSafeMaxDuration = TimeSpan.FromHours(1),
+        FailSafeThrottleDuration = TimeSpan.FromSeconds(30),
         #endregion
 
     })

@@ -15,7 +15,6 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
 
 
-#pragma warning disable EXTEXP0018 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 builder.Services.AddHybridCache(options =>
     {
         options.MaximumPayloadBytes = 1024 * 1024;
@@ -26,7 +25,6 @@ builder.Services.AddHybridCache(options =>
             LocalCacheExpiration = TimeSpan.FromSeconds(15)
         };
     });
-#pragma warning restore EXTEXP0018 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
 
 

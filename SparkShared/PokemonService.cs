@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Caching.Hybrid;
+﻿using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Caching.Memory;
 using PokeApiNet;
+using System.Text.Json;
 
 namespace SparkShared
 {
@@ -8,17 +10,33 @@ namespace SparkShared
     {
         private HybridCache _cache;
         private PokeApiClient _pokeApiClient;
-        private IMemoryCache _memoryCache;
 
-        public PokemonService(HybridCache hybridCache, PokeApiClient pokeApiClient, IMemoryCache memoryCache)
+        public PokemonService(HybridCache hybridCache, 
+            PokeApiClient pokeApiClient)
         {
             _cache = hybridCache;
             _pokeApiClient = pokeApiClient;
-            _memoryCache = memoryCache;
         }
 
         public async Task<PokemonResponse> GetPokemonAsync(string name, string tag = "", bool fake = false, CancellationToken token = default)
         {
+
+            #region MemoryCache
+            //await _memoryCache.GetOrCreateAsync(
+            //    name, 
+            //    async _ => await GetPokemonFromApiAsync(name, token, fake));
+            #endregion
+
+            #region DistributedCache
+            //await _distributedCache.GetAsync(name, token).ContinueWith(async task =>
+            //{
+            //    if (task.Result == null)
+            //    {
+            //        var pokemon = await GetPokemonFromApiAsync(name, token, fake);
+            //        await _distributedCache.SetAsync(name, JsonSerializer.SerializeToUtf8Bytes(pokemon) , token);
+            //    }
+            //}, token);
+            #endregion
 
             #region EntryOptions
             var entryOptions = new HybridCacheEntryOptions
@@ -36,6 +54,7 @@ namespace SparkShared
             }
             #endregion
 
+            #region HybridCache
             return await _cache.GetOrCreateAsync(
                 $"pokemon-{name}",
                 async _ => await GetPokemonFromApiAsync(name, token, fake),
@@ -43,6 +62,7 @@ namespace SparkShared
                 //options: entryOptions,
                 cancellationToken: token
             );
+            #endregion
         }
 
         public async Task<PokemonResponse> GetPokemonFromApiAsync(string name, CancellationToken token, bool fake = false)
